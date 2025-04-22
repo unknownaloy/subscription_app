@@ -1,0 +1,14 @@
+{
+  "name": "subscription_tracker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ellis Ifoegbu",
+  "license": "MIT",
+  "description": ""
+}
