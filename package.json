@@ -10,5 +10,13 @@
   },
   "author": "Ellis Ifoegbu",
   "license": "MIT",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "@eslint/js": "^9.25.1",
+    "eslint": "^9.25.1",
+    "globals": "^16.0.0"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }
