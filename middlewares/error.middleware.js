@@ -6,7 +6,8 @@ export const errorMiddleware = (err, req, res, next) => {
 
     error.message = err.message;
 
-    console.error(err);
+    console.error(`errorMiddleware - err -- ${err}`);
+    console.error(`errorMiddleware - req -- ${req}`);
 
     if (err.name === "CastError") {
       const message = "Resource not found";
