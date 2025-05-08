@@ -78,16 +78,14 @@ export const signIn = async (req, res, next) => {
       { expiresIn: JWT_EXPIRES_IN }
     );
 
-    const userDetails = user.toObject();
-    userDetails.id = user._id;
-    userDetails.token = token;
+    const data = user.toObject();
+    data.id = user._id;
+    data.token = token;
 
     return responseHandler(res, {
       success: true,
       message: "User signed in successfully",
-      data: {
-        userDetails,
-      },
+      data,
     });
   } catch (err) {
     next(err);
