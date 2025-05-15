@@ -19,7 +19,7 @@ export const authorize = async (req, res, next) => {
         res,
         {
           success: false,
-          message: "Unauthorized or missing token",
+          message: "Unauthorized",
         },
         401
       );

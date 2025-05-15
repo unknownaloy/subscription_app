@@ -28,13 +28,12 @@ export const signup = async (req, res, next) => {
       { session }
     );
 
-    const token = jwt.sign(
-      { userId: newUser[0]._id, name, email },
-      JWT_SECRET,
-      {
-        expiresIn: JWT_EXPIRES_IN,
-      }
-    );
+    const data = newUser[0].toObject();
+    data.userId = newUser._id;
+
+    const token = jwt.sign({ userId: data.userId, name, email }, JWT_SECRET, {
+      expiresIn: JWT_EXPIRES_IN,
+    });
 
     session.commitTransaction();
     session.endSession();
@@ -42,7 +41,7 @@ export const signup = async (req, res, next) => {
     return responseHandler(res, {
       success: true,
       message: "User created",
-      data: { token, user: newUser[0] },
+      data: { token, user: data },
       statusCode: 201,
     });
   } catch (err) {
@@ -57,6 +56,8 @@ export const signIn = async (req, res, next) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
+
+    console.log(`bitcoin - user -- ${user.id}`);
 
     if (!user) {
       const error = new Error("User not found");
@@ -79,7 +80,7 @@ export const signIn = async (req, res, next) => {
     );
 
     const data = user.toObject();
-    data.id = user._id;
+    data.userId = user._id;
     data.token = token;
 
     return responseHandler(res, {
